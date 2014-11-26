@@ -27,8 +27,6 @@
 
 #define _PIPE(pipe, a, b) ((a) + (pipe)*((b)-(a)))
 
-#define _MASKED_BIT_ENABLE(a) (((a) << 16) | (a))
-
 #define INTEL_GMCH_CTRL		0x52
 #define INTEL_GMCH_VGA_DISABLE  (1 << 1)
 
@@ -396,7 +394,6 @@
 #define ERROR_GEN6	0x040a0
 
 #define _3D_CHICKEN	0x02084
-#define _3D_CHICKEN_HIZ_PLANE_DISABLE_MSAA_4X_SNB	(1 << 10)
 #define _3D_CHICKEN2	0x0208c
 # define _3D_CHICKEN2_WM_READ_PIPELINED			(1 << 14)
 #define _3D_CHICKEN3	0x02090
