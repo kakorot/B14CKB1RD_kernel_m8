@@ -1,0 +1,2 @@
+	kernel/printk.c.orig
+	kernel/printk.c.rej
