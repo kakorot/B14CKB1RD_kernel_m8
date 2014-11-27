@@ -1,2 +1,2 @@
-	kernel/printk.c.orig
-	kernel/printk.c.rej
+	sound/usb/quirks-table.h.orig
+	sound/usb/quirks-table.h.rej

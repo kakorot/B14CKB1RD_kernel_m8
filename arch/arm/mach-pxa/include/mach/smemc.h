@@ -36,7 +36,8 @@
 #define CSADRCFG0	(SMEMC_VIRT + 0x80)  
 #define CSADRCFG1	(SMEMC_VIRT + 0x84)  
 #define CSADRCFG2	(SMEMC_VIRT + 0x88)  
-#define CSADRCFG3	(SMEMC_VIRT + 0x8C)  
+#define CSADRCFG3	(SMEMC_VIRT + 0x8C)
+#define CSMSADRCFG	(SMEMC_VIRT + 0xA0)  /* Chip Select Configuration Register */  
 
 #define MCMEM(s)	(SMEMC_VIRT + 0x28 + ((s)<<2))  
 #define MCATT(s)	(SMEMC_VIRT + 0x30 + ((s)<<2))  
