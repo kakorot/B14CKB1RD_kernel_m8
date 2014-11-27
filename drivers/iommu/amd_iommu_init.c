@@ -1330,8 +1330,6 @@ int __init amd_iommu_init_hardware(void)
 	if (amd_iommu_pd_alloc_bitmap == NULL)
 		goto free;
 
-	
-	init_device_table();
 
 	for (i = 0; i <= amd_iommu_last_bdf; ++i)
 		amd_iommu_alias_table[i] = i;
@@ -1393,6 +1391,7 @@ out:
 
 static int __init amd_iommu_init(void)
 {
+	struct amd_iommu *iommu;
 	int ret = 0;
 
 	ret = amd_iommu_init_hardware();
@@ -1410,6 +1409,13 @@ static int __init amd_iommu_init(void)
 
 	if (ret)
 		goto free;
+		
+	/* init the device table */
+	init_device_table();
+
+	for_each_iommu(iommu)
+		iommu_flush_all_caches(iommu);
+
 
 	amd_iommu_init_api();
 

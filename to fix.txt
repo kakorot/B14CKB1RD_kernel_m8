@@ -1,2 +1,1 @@
-	sound/usb/quirks-table.h.orig
-	sound/usb/quirks-table.h.rej
+	

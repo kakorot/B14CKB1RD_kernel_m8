@@ -28,14 +28,21 @@
 #define AUTOFS_MAX_PROTO_VERSION	AUTOFS_PROTO_VERSION
 #define AUTOFS_MIN_PROTO_VERSION	AUTOFS_PROTO_VERSION
 
+ /*
+ * The wait_queue_token (autofs_wqt_t) is part of a structure which is passed
+ * back to the kernel via ioctl from userspace. On architectures where 32- and
+ * 64-bit userspace binaries can be executed it's important that the size of
+ * autofs_wqt_t stays constant between 32- and 64-bit Linux kernels so that we
+ * do not break the binary ABI interface by changing the structure size.
+ */
 
-#if defined(__sparc__) || defined(__mips__) || defined(__x86_64__) \
- || defined(__powerpc__) || defined(__s390__)
-typedef unsigned int autofs_wqt_t;
-#else
+#if defined(__ia64__) || defined(__alpha__) /* pure 64bit architectures */
 typedef unsigned long autofs_wqt_t;
+#else
+typedef unsigned int autofs_wqt_t;
 #endif
 
+/* Packet Type */
 #define autofs_ptype_missing	0	
 #define autofs_ptype_expire	1	
 
