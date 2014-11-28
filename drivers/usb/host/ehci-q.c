@@ -90,26 +90,26 @@ qh_update (struct ehci_hcd *ehci, struct ehci_qh *qh, struct ehci_qtd *qtd)
 static void
 qh_refresh (struct ehci_hcd *ehci, struct ehci_qh *qh)
 {
-struct ehci_qtd *qtd;
-if (list_empty (&qh->qtd_list))
-qtd = qh->dummy;
-else {
-qtd = list_entry (qh->qtd_list.next,
-struct ehci_qtd, qtd_list);
-/*
-* first qtd may already be partially processed.
-* If we come here during unlink, the QH overlay region
-* might have reference to the just unlinked qtd. The
-* qtd is updated in qh_completions(). Update the QH
-* overlay here.
-*/
-if (cpu_to_hc32(ehci, qtd->qtd_dma) == qh->hw->hw_current) {
-qh->hw->hw_qtd_next = qtd->hw_next;
-qtd = NULL;
-}
-}
-if (qtd)
-qh_update (ehci, qh, qtd);
+	struct ehci_qtd *qtd;
+		if (list_empty (&qh->qtd_list))
+		qtd = qh->dummy;
+	else {
+		qtd = list_entry (qh->qtd_list.next,
+	struct ehci_qtd, qtd_list);
+	/*
+	* first qtd may already be partially processed.
+	* If we come here during unlink, the QH overlay region
+	* might have reference to the just unlinked qtd. The
+	* qtd is updated in qh_completions(). Update the QH
+	* overlay here.
+	*/
+		if (qh->hw->hw_token & ACTIVE_BIT(ehci)) {
+			qh->hw->hw_qtd_next = qtd->hw_next;
+			qtd = NULL;
+		}
+	}
+		if (qtd)
+		qh_update (ehci, qh, qtd);
 }
 /*-------------------------------------------------------------------------*/
 
@@ -370,11 +370,19 @@ qh_completions (struct ehci_hcd *ehci, struct ehci_qh *qh)
 			else if (last_status == -EINPROGRESS && !urb->unlinked)
 				continue;
 
-			
-			if (state == QH_STATE_IDLE
-					&& cpu_to_hc32(ehci, qtd->qtd_dma)
-						== hw->hw_current) {
+			/*
+			 * If this was the active qtd when the qh was unlinked
+			 * and the overlay's token is active, then the overlay
+			 * hasn't been written back to the qtd yet so use its
+			 * token instead of the qtd's.  After the qtd is
+			 * processed and removed, the overlay won't be valid
+			 * any more.
+			 */
+			if (state == QH_STATE_IDLE &&
+					qh->qtd_list.next == &qtd->qtd_list &&
+					(hw->hw_token & ACTIVE_BIT(ehci))) {
 				token = hc32_to_cpu(ehci, hw->hw_token);
+				hw->hw_token &= ~ACTIVE_BIT(ehci);
 
 				ehci_clear_tt_buffer(ehci, qh, urb, token);
 			}

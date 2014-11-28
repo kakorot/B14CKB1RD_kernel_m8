@@ -79,7 +79,8 @@
 #define ipaddr_prefixcmp(addr1, addr2, length) \
 	(memcmp(addr1, addr2, length >> 3) == 0)
 
-#define is_addr_link_local(a) (((a)->s6_addr16[0]) == 0x80FE)
+/* local link, i.e. FE80::/10 */
+#define is_addr_link_local(a) (((a)->s6_addr16[0]) == htons(0xFE80))
 
 #define lowpan_is_iid_16_bit_compressable(a)	\
 	((((a)->s6_addr16[4]) == 0) &&		\
