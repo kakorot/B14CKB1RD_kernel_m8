@@ -248,8 +248,8 @@ static int mwifiex_pm_wakeup_card(struct mwifiex_adapter *adapter)
 	while (mwifiex_pcie_ok_to_access_hw(adapter)) {
 		i++;
 		usleep_range(10, 20);
-		
-		if (i == 50000)
+		/* 50ms max wait */
+		if (i == 5000)
 			break;
 	}
 
