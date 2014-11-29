@@ -1675,10 +1675,12 @@ int bond_release(struct net_device *bond_dev, struct net_device *slave_dev)
 		unblock_netpoll_tx();
 		return -EINVAL;
 	}
-
-	netdev_rx_handler_unregister(slave_dev);
+	
 	write_unlock_bh(&bond->lock);
-	synchronize_net();
+ 	/* unregister rx_handler early so bond_handle_frame wouldn't be called
+ 	 * for this slave anymore.
+ 	 */
+	netdev_rx_handler_unregister(slave_dev);
 	write_lock_bh(&bond->lock);
 
 	if (!bond->params.fail_over_mac) {
@@ -2890,6 +2892,28 @@ static int bond_xmit_hash_policy_l2(struct sk_buff *skb, int count)
 }
 
 
+static void bond_work_init_all(struct bonding *bond)
+{
+	INIT_DELAYED_WORK(&bond->mcast_work,
+			  bond_resend_igmp_join_requests_delayed);
+	INIT_DELAYED_WORK(&bond->alb_work, bond_alb_monitor);
+	INIT_DELAYED_WORK(&bond->mii_work, bond_mii_monitor);
+	if (bond->params.mode == BOND_MODE_ACTIVEBACKUP)
+		INIT_DELAYED_WORK(&bond->arp_work, bond_activebackup_arp_mon);
+	else
+		INIT_DELAYED_WORK(&bond->arp_work, bond_loadbalance_arp_mon);
+	INIT_DELAYED_WORK(&bond->ad_work, bond_3ad_state_machine_handler);
+}
+
+static void bond_work_cancel_all(struct bonding *bond)
+{
+	cancel_delayed_work_sync(&bond->mii_work);
+	cancel_delayed_work_sync(&bond->arp_work);
+	cancel_delayed_work_sync(&bond->alb_work);
+	cancel_delayed_work_sync(&bond->ad_work);
+	cancel_delayed_work_sync(&bond->mcast_work);
+}
+
 static int bond_open(struct net_device *bond_dev)
 {
 	struct bonding *bond = netdev_priv(bond_dev);
@@ -2912,40 +2936,29 @@ static int bond_open(struct net_device *bond_dev)
 	}
 	read_unlock(&bond->lock);
 
-	INIT_DELAYED_WORK(&bond->mcast_work, bond_resend_igmp_join_requests_delayed);
+	bond_work_init_all(bond);
 
 	if (bond_is_lb(bond)) {
-		if (bond_alb_initialize(bond, (bond->params.mode == BOND_MODE_ALB))) {
-			
+		/* bond_alb_initialize must be called before the timer
+ 		 * is started.
+ 		 */
+		if (bond_alb_initialize(bond, (bond->params.mode == BOND_MODE_ALB)))
 			return -ENOMEM;
-		}
-
-		INIT_DELAYED_WORK(&bond->alb_work, bond_alb_monitor);
 		queue_delayed_work(bond->wq, &bond->alb_work, 0);
 	}
 
-	if (bond->params.miimon) {  
-		INIT_DELAYED_WORK(&bond->mii_work, bond_mii_monitor);
+	if (bond->params.miimon)  /* link check interval, in milliseconds. */
 		queue_delayed_work(bond->wq, &bond->mii_work, 0);
-	}
 
 	if (bond->params.arp_interval) {  
-		if (bond->params.mode == BOND_MODE_ACTIVEBACKUP)
-			INIT_DELAYED_WORK(&bond->arp_work,
-					  bond_activebackup_arp_mon);
-		else
-			INIT_DELAYED_WORK(&bond->arp_work,
-					  bond_loadbalance_arp_mon);
-
 		queue_delayed_work(bond->wq, &bond->arp_work, 0);
 		if (bond->params.arp_validate)
 			bond->recv_probe = bond_arp_rcv;
 	}
 
 	if (bond->params.mode == BOND_MODE_8023AD) {
-		INIT_DELAYED_WORK(&bond->ad_work, bond_3ad_state_machine_handler);
 		queue_delayed_work(bond->wq, &bond->ad_work, 0);
-		
+		/* register to receive LACPDUs */
 		bond->recv_probe = bond_3ad_lacpdu_recv;
 		bond_3ad_initiate_agg_selection(bond, 1);
 	}
@@ -2958,34 +2971,10 @@ static int bond_close(struct net_device *bond_dev)
 	struct bonding *bond = netdev_priv(bond_dev);
 
 	write_lock_bh(&bond->lock);
-
 	bond->send_peer_notif = 0;
-
 	write_unlock_bh(&bond->lock);
 
-	if (bond->params.miimon) {  
-		cancel_delayed_work_sync(&bond->mii_work);
-	}
-
-	if (bond->params.arp_interval) {  
-		cancel_delayed_work_sync(&bond->arp_work);
-	}
-
-	switch (bond->params.mode) {
-	case BOND_MODE_8023AD:
-		cancel_delayed_work_sync(&bond->ad_work);
-		break;
-	case BOND_MODE_TLB:
-	case BOND_MODE_ALB:
-		cancel_delayed_work_sync(&bond->alb_work);
-		break;
-	default:
-		break;
-	}
-
-	if (delayed_work_pending(&bond->mcast_work))
-		cancel_delayed_work_sync(&bond->mcast_work);
-
+	bond_work_cancel_all(bond);
 	if (bond_is_lb(bond)) {
 		bond_alb_deinitialize(bond);
 	}
@@ -3733,25 +3722,6 @@ static void bond_setup(struct net_device *bond_dev)
 	bond_dev->features |= bond_dev->hw_features;
 }
 
-static void bond_work_cancel_all(struct bonding *bond)
-{
-	if (bond->params.miimon && delayed_work_pending(&bond->mii_work))
-		cancel_delayed_work_sync(&bond->mii_work);
-
-	if (bond->params.arp_interval && delayed_work_pending(&bond->arp_work))
-		cancel_delayed_work_sync(&bond->arp_work);
-
-	if (bond->params.mode == BOND_MODE_ALB &&
-	    delayed_work_pending(&bond->alb_work))
-		cancel_delayed_work_sync(&bond->alb_work);
-
-	if (bond->params.mode == BOND_MODE_8023AD &&
-	    delayed_work_pending(&bond->ad_work))
-		cancel_delayed_work_sync(&bond->ad_work);
-
-	if (delayed_work_pending(&bond->mcast_work))
-		cancel_delayed_work_sync(&bond->mcast_work);
-}
 
 static void bond_uninit(struct net_device *bond_dev)
 {

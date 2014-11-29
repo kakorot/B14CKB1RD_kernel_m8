@@ -61,6 +61,16 @@ static struct iommu_ops amd_iommu_ops;
 static ATOMIC_NOTIFIER_HEAD(ppr_notifier);
 int amd_iommu_max_glx_val = -1;
 
+static struct dma_map_ops amd_iommu_dma_ops;
+
+ /*
+  * general struct to manage commands send to an IOMMU
+  */
+static struct dma_map_ops amd_iommu_dma_ops;
+
+ /*
+  * general struct to manage commands send to an IOMMU
+  */
 struct iommu_cmd {
 	u32 data[4];
 };
@@ -1969,6 +1979,18 @@ static int device_change_notifier(struct notifier_block *nb,
 
 		iommu_init_device(dev);
 
+		/*
+		 * dev_data is still NULL and
+		 * got initialized in iommu_init_device
+		 */
+		dev_data = get_dev_data(dev);
+
+		if (iommu_pass_through || dev_data->iommu_v2) {
+			dev_data->passthrough = true;
+			attach_device(dev, pt_domain);
+			break;
+		}
+
 		domain = domain_for_device(dev);
 
 		
@@ -1993,10 +2015,7 @@ static int device_change_notifier(struct notifier_block *nb,
 
 		dev_data = get_dev_data(dev);
 
-		if (!dev_data->passthrough)
-			dev->archdata.dma_ops = &amd_iommu_dma_ops;
-		else
-			dev->archdata.dma_ops = &nommu_dma_ops;
+		dev->archdata.dma_ops = &amd_iommu_dma_ops;
 
 		break;
 	case BUS_NOTIFY_DEL_DEVICE:

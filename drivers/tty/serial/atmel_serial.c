@@ -149,7 +149,7 @@ struct atmel_uart_port {
 };
 
 static struct atmel_uart_port atmel_ports[ATMEL_MAX_UART];
-static unsigned long atmel_ports_in_use;
+static DECLARE_BITMAP(atmel_ports_in_use, ATMEL_MAX_UART);
 
 #ifdef SUPPORT_SYSRQ
 static struct console atmel_console;
@@ -1530,16 +1530,17 @@ static int __devinit atmel_serial_probe(struct platform_device *pdev)
 			ret = pdata->num;
 
 	if (ret < 0)
-		ret = find_first_zero_bit(&atmel_ports_in_use,
-				sizeof(atmel_ports_in_use));
+		/* port id not found in platform data nor device-tree aliases:
+ 		 * auto-enumerate it */
+		ret = find_first_zero_bit(atmel_ports_in_use, ATMEL_MAX_UART);
 
-	if (ret > ATMEL_MAX_UART) {
+	if (ret >= ATMEL_MAX_UART) {
 		ret = -ENODEV;
 		goto err;
 	}
 
-	if (test_and_set_bit(ret, &atmel_ports_in_use)) {
-		
+	if (test_and_set_bit(ret, atmel_ports_in_use)) {
+ 		/* port already in use */
 		ret = -EBUSY;
 		goto err;
 	}
@@ -1608,7 +1609,7 @@ static int __devexit atmel_serial_remove(struct platform_device *pdev)
 
 	
 
-	clear_bit(port->line, &atmel_ports_in_use);
+	clear_bit(port->line, atmel_ports_in_use);
 
 	clk_put(atmel_port->clk);
 

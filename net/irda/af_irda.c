@@ -2182,10 +2182,12 @@ bed:
 				    NULL, NULL, NULL);
 
 		
-		if (!self->cachedaddr)
-			return -EAGAIN;		
-		daddr = self->cachedaddr;
-		
+		if (!self->cachedaddr) {
+			err = -EAGAIN;		/* Didn't find any devices */
+			goto out;
+		}
+ 		daddr = self->cachedaddr;
+ 		/* Cleanup */
 		self->cachedaddr = 0;
 
 		if (put_user(daddr, (int __user *)optval)) {

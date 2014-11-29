@@ -1283,9 +1283,12 @@ static int tcp_tso_should_defer(struct sock *sk, struct sk_buff *skb)
 		if (limit > tcp_max_tso_deferred_mss(tp) * tp->mss_cache)
 			goto send_now;
 	}
-
 	
-	tp->tso_deferred = 1 | (jiffies << 1);
+	/* Ok, it looks like it is advisable to defer.
+	 * Do not rearm the timer if already set to not break TCP ACK clocking.
+	 */
+	if (!tp->tso_deferred)
+		tp->tso_deferred = 1 | (jiffies << 1);
 
 	return 1;
 

@@ -176,6 +176,7 @@ struct k_sigaction {
 	struct			__new_sigaction sa;
 	void			__user *ka_restorer;
 };
+#define __ARCH_HAS_SA_RESTORER
 
 #define ptrace_signal_deliver(regs, cookie) do { } while (0)
 

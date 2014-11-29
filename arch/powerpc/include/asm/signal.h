@@ -110,6 +110,7 @@ struct sig_dbg_op {
 	int dbg_type;
 	unsigned long dbg_value;
 };
+#define __ARCH_HAS_SA_RESTORER
 
 #define SIG_DBG_SINGLE_STEPPING		1
 

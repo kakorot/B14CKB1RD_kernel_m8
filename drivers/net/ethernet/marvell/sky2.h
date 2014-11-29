@@ -1895,7 +1895,7 @@ enum {
 	GM_IS_RX_FF_OR	= 1<<1,	
 	GM_IS_RX_COMPL	= 1<<0,	
 
-#define GMAC_DEF_MSK     GM_IS_TX_FF_UR
+#define GMAC_DEF_MSK     (GM_IS_TX_FF_UR | GM_IS_RX_FF_OR)
 };
 
 enum {						

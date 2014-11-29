@@ -124,6 +124,7 @@ struct sigaction {
 	sigset_t sa_mask;
 #endif 
 };
+#define __ARCH_HAS_SA_RESTORER
 
 #define sa_handler      _u._sa_handler
 #define sa_sigaction    _u._sa_sigaction
