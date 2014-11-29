@@ -114,14 +114,9 @@ struct xhci_op_regs {
 #define CMD_EWE		XHCI_CMD_EWE
 #define CMD_PM_INDEX	(1 << 11)
 
- /* bits 12:31 are reserved (and should be preserved on writes). */
- 
- /* IMAN - Interrupt Management Register */
-#define IMAN_IE		(1 << 1)
-#define IMAN_IP		(1 << 0)
+#define IMAN_IP		(1 << 1)
+#define IMAN_IE		(1 << 0)
 
- /* USBSTS - USB status - status bitmasks */
- /* HC not running - set to 1 when run/stop bit is cleared. */
 #define STS_HALT	XHCI_STS_HALT
 #define STS_FATAL	(1 << 2)
 #define STS_EINT	(1 << 3)

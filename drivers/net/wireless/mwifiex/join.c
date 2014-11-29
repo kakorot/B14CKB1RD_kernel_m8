@@ -836,9 +836,10 @@ mwifiex_cmd_802_11_ad_hoc_join(struct mwifiex_private *priv,
 		adhoc_join->bss_descriptor.bssid,
 		adhoc_join->bss_descriptor.ssid);
 
-	for (i = 0; i < MWIFIEX_SUPPORTED_RATES &&
-		    bss_desc->supported_rates[i]; i++)
-		;
+	for (i = 0; bss_desc->supported_rates[i] &&
+			i < MWIFIEX_SUPPORTED_RATES;
+			i++)
+			;
 	rates_size = i;
 
 	

@@ -88,6 +88,18 @@ static int efx_test_nvram(struct efx_nic *efx, struct efx_self_tests *tests)
 	return rc;
 }
 
+static int efx_test_chip(struct efx_nic *efx, struct efx_self_tests *tests)
+{
+	int rc = 0;
+
+	
+	if (efx->type->test_registers) {
+		rc = efx->type->test_registers(efx);
+		tests->registers = rc ? -1 : 1;
+	}
+
+	return rc;
+}
 
 
 static int efx_test_interrupts(struct efx_nic *efx,
@@ -605,7 +617,8 @@ int efx_selftest(struct efx_nic *efx, struct efx_self_tests *tests,
 {
 	enum efx_loopback_mode loopback_mode = efx->loopback_mode;
 	int phy_mode = efx->phy_mode;
-	int rc_test = 0, rc_reset, rc;
+	enum reset_type reset_method = RESET_TYPE_INVISIBLE;
+	int rc_test = 0, rc_reset = 0, rc;
 
 	efx_selftest_async_cancel(efx);
 
@@ -632,34 +645,44 @@ int efx_selftest(struct efx_nic *efx, struct efx_self_tests *tests,
 	if (!(flags & ETH_TEST_FL_OFFLINE))
 		return efx_test_phy(efx, tests, flags);
 
-	 /* Detach the device so the kernel doesn't transmit during the
- 	 * loopback test and the watchdog timeout doesn't fire.
- 	 */
 
-	 efx_device_detach_sync(efx);
+	netif_device_detach(efx->net_dev);
 
-	if (efx->type->test_chip) {
-		rc_reset = efx->type->test_chip(efx, tests);
-		if (rc_reset) {
-			netif_err(efx, hw, efx->net_dev,
-				  "Unable to recover from chip test\n");
-			efx_schedule_reset(efx, RESET_TYPE_DISABLE);
-			return rc_reset;
-		}
-
-	if ((tests->registers < 0) && !rc_test)
-			rc_test = -EIO;
-	}
-
-
-	/* Ensure that the phy is powered and out of loopback
- 	 * for the bist and loopback tests */
 	mutex_lock(&efx->mac_lock);
-	efx->phy_mode &= ~PHY_MODE_LOW_POWER;
-	efx->loopback_mode = LOOPBACK_NONE;
+	if (efx->loopback_modes) {
+		if (efx->loopback_modes & (1 << LOOPBACK_XGMII))
+			efx->loopback_mode = LOOPBACK_XGMII;
+		else
+			efx->loopback_mode = __ffs(efx->loopback_modes);
+	}
 
 	__efx_reconfigure_port(efx);
 	mutex_unlock(&efx->mac_lock);
+
+	
+	efx_reset_down(efx, reset_method);
+
+	rc = efx_test_chip(efx, tests);
+	if (rc && !rc_test)
+		rc_test = rc;
+
+	
+	rc_reset = efx->type->reset(efx, reset_method);
+
+	efx->phy_mode &= ~PHY_MODE_LOW_POWER;
+	efx->loopback_mode = LOOPBACK_NONE;
+
+	rc = efx_reset_up(efx, reset_method, rc_reset == 0);
+	if (rc && !rc_reset)
+		rc_reset = rc;
+
+	if (rc_reset) {
+		netif_err(efx, drv, efx->net_dev,
+			  "Unable to recover from chip test\n");
+		efx_schedule_reset(efx, RESET_TYPE_DISABLE);
+		return rc_reset;
+	}
+
 	rc = efx_test_phy(efx, tests, flags);
 	if (rc && !rc_test)
 		rc_test = rc;

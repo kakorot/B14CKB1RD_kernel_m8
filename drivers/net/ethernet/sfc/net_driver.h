@@ -72,8 +72,6 @@ struct efx_tx_buffer {
 	unsigned short unmap_len;
 };
 
-struct efx_self_tests;
-
 /**
  * struct efx_tx_queue - An Efx TX queue
  *
@@ -155,7 +153,6 @@ struct efx_tx_queue {
 	
 	unsigned int empty_read_count ____cacheline_aligned_in_smp;
 #define EFX_EMPTY_COUNT_VALID 0x80000000
-	atomic_t flush_outstanding;
 };
 
 struct efx_rx_buffer {
@@ -164,8 +161,7 @@ struct efx_rx_buffer {
 		struct sk_buff *skb;
 		struct page *page;
 	} u;
-	u16 page_offset;
-	u16 len;
+	unsigned int len;
 	u16 flags;
 };
 #define EFX_RX_BUF_PAGE		0x0001
@@ -575,7 +571,6 @@ struct efx_nic_type {
 	void (*remove_port)(struct efx_nic *efx);
 	bool (*handle_global_event)(struct efx_channel *channel, efx_qword_t *);
 	void (*prepare_flush)(struct efx_nic *efx);
-	void (*finish_flush)(struct efx_nic *efx);
 	void (*update_stats)(struct efx_nic *efx);
 	void (*start_stats)(struct efx_nic *efx);
 	void (*stop_stats)(struct efx_nic *efx);
@@ -587,7 +582,7 @@ struct efx_nic_type {
 	void (*get_wol)(struct efx_nic *efx, struct ethtool_wolinfo *wol);
 	int (*set_wol)(struct efx_nic *efx, u32 type);
 	void (*resume_wol)(struct efx_nic *efx);
-	int (*test_chip)(struct efx_nic *efx, struct efx_self_tests *tests);
+	int (*test_registers)(struct efx_nic *efx);
 	int (*test_nvram)(struct efx_nic *efx);
 
 	int revision;
