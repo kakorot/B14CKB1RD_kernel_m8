@@ -1493,6 +1493,8 @@ int bond_enslave(struct net_device *bond_dev, struct net_device *slave_dev)
 
 	bond_compute_features(bond);
 
+	bond_update_speed_duplex(new_slave);
+
 	read_lock(&bond->lock);
 
 	new_slave->last_arp_rx = jiffies;
@@ -1526,8 +1528,6 @@ int bond_enslave(struct net_device *bond_dev, struct net_device *slave_dev)
 		pr_debug("Initial state of slave_dev is BOND_LINK_DOWN\n");
 		new_slave->link  = BOND_LINK_DOWN;
 	}
-
-	bond_update_speed_duplex(new_slave);
 
 	if (USES_PRIMARY(bond->params.mode) && bond->params.primary[0]) {
 		
@@ -2111,8 +2111,6 @@ static void bond_miimon_commit(struct bonding *bond)
 				
 				bond_set_backup_slave(slave);
 			}
-
-			bond_update_speed_duplex(slave);
 
 			pr_info("%s: link status definitely up for interface %s, %u Mbps %s duplex.\n",
 				bond->dev->name, slave->dev->name,

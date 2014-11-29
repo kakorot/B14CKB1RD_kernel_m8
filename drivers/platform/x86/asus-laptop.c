@@ -765,6 +765,15 @@ static ssize_t show_infos(struct device *dev,
 	if (!ACPI_FAILURE(rv))
 		len += sprintf(page + len, "SFUN value         : %#x\n",
 			       (uint) temp);
+				   
+ 	/*
+ 	 * The HWRS method return informations about the hardware.
+ 	 * 0x80 bit is for WLAN, 0x100 for Bluetooth.
+	 * 0x40 for WWAN, 0x10 for WIMAX.
+ 	 * The significance of others is yet to be found.
+	 * We don't currently use this for device detection, and it
+	 * takes several seconds to run on some systems.
+ 	 */
 	rv = acpi_evaluate_integer(asus->handle, "HWRS", NULL, &temp);
 	if (!ACPI_FAILURE(rv))
 		len += sprintf(page + len, "HWRS value         : %#x\n",
@@ -1529,7 +1538,7 @@ static int asus_laptop_get_info(struct asus_laptop *asus)
 {
 	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
 	union acpi_object *model = NULL;
-	unsigned long long bsts_result, hwrs_result;
+	unsigned long long bsts_result;
 	char *string = NULL;
 	acpi_status status;
 
@@ -1577,11 +1586,6 @@ static int asus_laptop_get_info(struct asus_laptop *asus)
 
 	if (*string)
 		pr_notice("  %s model detected\n", string);
-
-	status =
-	    acpi_evaluate_integer(asus->handle, "HWRS", NULL, &hwrs_result);
-	if (!ACPI_FAILURE(status))
-		pr_notice("  HWRS returned %x", (int)hwrs_result);
 
 	if (!acpi_check_handle(asus->handle, METHOD_WL_STATUS, NULL))
 		asus->have_rsts = true;
