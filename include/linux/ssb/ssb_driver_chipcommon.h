@@ -214,12 +214,13 @@
 #define SSB_CHIPCO_UART1_LSR		0x0414
 #define SSB_CHIPCO_UART1_MSR		0x0418
 #define SSB_CHIPCO_UART1_SCRATCH	0x041C
-#define SSB_CHIPCO_PMU_CTL			0x0600 
-#define  SSB_CHIPCO_PMU_CTL_ILP_DIV		0xFFFF0000 
+#define SSB_CHIPCO_PMU_CTL			0x0600 /* PMU control */
+#define  SSB_CHIPCO_PMU_CTL_ILP_DIV		0xFFFF0000 /* ILP div mask */
 #define  SSB_CHIPCO_PMU_CTL_ILP_DIV_SHIFT	16
-#define  SSB_CHIPCO_PMU_CTL_NOILPONW		0x00000200 
-#define  SSB_CHIPCO_PMU_CTL_HTREQEN		0x00000100 
-#define  SSB_CHIPCO_PMU_CTL_ALPREQEN		0x00000080 
+#define  SSB_CHIPCO_PMU_CTL_PLL_UPD		0x00000400
+#define  SSB_CHIPCO_PMU_CTL_NOILPONW		0x00000200 /* No ILP on wait */
+#define  SSB_CHIPCO_PMU_CTL_HTREQEN		0x00000100 /* HT req enable */
+#define  SSB_CHIPCO_PMU_CTL_ALPREQEN		0x00000080 /* ALP req enable */
 #define  SSB_CHIPCO_PMU_CTL_XTALFREQ		0x0000007C 
 #define  SSB_CHIPCO_PMU_CTL_XTALFREQ_SHIFT	2
 #define  SSB_CHIPCO_PMU_CTL_ILPDIVEN		0x00000002 
@@ -626,5 +627,6 @@ enum ssb_pmu_ldo_volt_id {
 void ssb_pmu_set_ldo_voltage(struct ssb_chipcommon *cc,
 			     enum ssb_pmu_ldo_volt_id id, u32 voltage);
 void ssb_pmu_set_ldo_paref(struct ssb_chipcommon *cc, bool on);
+void ssb_pmu_spuravoid_pllupdate(struct ssb_chipcommon *cc, int spuravoid);
 
 #endif 
