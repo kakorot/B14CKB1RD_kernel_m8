@@ -356,10 +356,13 @@ enum {
 	ATA_HORKAGE_ATAPI_MOD16_DMA = (1 << 11), 
 	ATA_HORKAGE_FIRMWARE_WARN = (1 << 12),	
 	ATA_HORKAGE_1_5_GBPS	= (1 << 13),	
-	ATA_HORKAGE_NOSETXFER	= (1 << 14),	
-	ATA_HORKAGE_BROKEN_FPDMA_AA	= (1 << 15),	
-	ATA_HORKAGE_DUMP_ID	= (1 << 16),	
-
+	ATA_HORKAGE_NOSETXFER	= (1 << 14),	/* skip SETXFER, SATA only */
+ 	ATA_HORKAGE_BROKEN_FPDMA_AA	= (1 << 15),	/* skip AA */
+ 	ATA_HORKAGE_DUMP_ID	= (1 << 16),	/* dump IDENTIFY data */
+	ATA_HORKAGE_MAX_SEC_LBA48 = (1 << 17),	/* Set max sects to 65535 */
+ 
+ 	 /* DMA mask for user DMA control: User visible values; DO NOT
+ 	    renumber */
 	ATA_DMA_MASK_ATA	= (1 << 0),	
 	ATA_DMA_MASK_ATAPI	= (1 << 1),	
 	ATA_DMA_MASK_CFA	= (1 << 2),	
