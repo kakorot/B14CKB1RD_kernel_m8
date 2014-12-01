@@ -703,6 +703,7 @@ static inline int io_remap_pfn_range(struct vm_area_struct *vma,
 	return remap_pfn_range(vma, from, phys_base >> PAGE_SHIFT, size, prot);
 }
 
+#include <asm/tlbflush.h>
 #include <asm-generic/pgtable.h>
 
 #define HAVE_ARCH_UNMAPPED_AREA
