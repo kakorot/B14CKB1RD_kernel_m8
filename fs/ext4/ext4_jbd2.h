@@ -90,6 +90,12 @@ static inline void ext4_journal_callback_add(handle_t *handle,
 	list_add_tail(&jce->jce_list, &handle->h_transaction->t_private_list);
 	spin_unlock(&sbi->s_md_lock);
 }
+ /*
+  * ext4_journal_callback_del: delete a registered callback
+  * @handle: active journal transaction handle on which callback was registered
+  * @jce: registered journal callback entry to unregister
+  * Return true if object was sucessfully removed
+  */
 
 static inline bool ext4_journal_callback_try_del(handle_t *handle,
 					     struct ext4_journal_cb_entry *jce)
