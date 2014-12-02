@@ -52,17 +52,14 @@ static int autofs4_mount_busy(struct vfsmount *mnt, struct dentry *dentry)
 	if (is_autofs4_dentry(path.dentry)) {
 		struct autofs_sb_info *sbi = autofs4_sbi(path.dentry->d_sb);
 
-		
+		/* This is an autofs submount, we can't expire it */
 		if (autofs_type_indirect(sbi->type))
 			goto done;
 
-		if (!d_mountpoint(path.dentry)) {
-			status = 0;
-			goto done;
 		}
 	}
 
-	
+	/* Update the expiry counter if fs is busy */
 	if (!may_umount_tree(path.mnt)) {
 		struct autofs_info *ino = autofs4_dentry_ino(top);
 		ino->last_used = jiffies;

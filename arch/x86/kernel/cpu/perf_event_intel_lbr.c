@@ -279,7 +279,7 @@ void intel_pmu_lbr_read(void)
 	intel_pmu_lbr_filter(cpuc);
 }
 
-static void intel_pmu_setup_sw_lbr_filter(struct perf_event *event)
+static int intel_pmu_setup_sw_lbr_filter(struct perf_event *event)
 {
 	u64 br_type = event->attr.branch_sample_type;
 	int mask = 0;
@@ -287,8 +287,11 @@ static void intel_pmu_setup_sw_lbr_filter(struct perf_event *event)
 	if (br_type & PERF_SAMPLE_BRANCH_USER)
 		mask |= X86_BR_USER;
 
-	if (br_type & PERF_SAMPLE_BRANCH_KERNEL)
+	if (br_type & PERF_SAMPLE_BRANCH_KERNEL) {
+		if (perf_paranoid_kernel() && !capable(CAP_SYS_ADMIN))
+			return -EACCES;
 		mask |= X86_BR_KERNEL;
+	}
 
 	
 
@@ -304,6 +307,8 @@ static void intel_pmu_setup_sw_lbr_filter(struct perf_event *event)
 	if (br_type & PERF_SAMPLE_BRANCH_IND_CALL)
 		mask |= X86_BR_IND_CALL;
 	event->hw.branch_reg.reg = mask;
+
+	return 0;
 }
 
 static int intel_pmu_setup_hw_lbr_filter(struct perf_event *event)
@@ -339,8 +344,17 @@ int intel_pmu_setup_lbr_filter(struct perf_event *event)
 
 	if (!x86_pmu.lbr_nr)
 		return -EOPNOTSUPP;
-
-	intel_pmu_setup_sw_lbr_filter(event);
+	
+	/*
+ 	 * setup SW LBR filter
+ 	 */
+	ret = intel_pmu_setup_sw_lbr_filter(event);
+	if (ret)
+		return ret;
+ 
+ 	/*
+ 	 * setup HW LBR filter, if any
+	 */
 
 	if (x86_pmu.lbr_sel_map)
 		ret = intel_pmu_setup_hw_lbr_filter(event);
@@ -374,8 +388,18 @@ static int branch_type(unsigned long from, unsigned long to)
 			return X86_BR_NONE;
 
 		addr = buf;
-	} else
-		addr = (void *)from;
+	} else {
+		/*
+		 * The LBR logs any address in the IP, even if the IP just
+		 * faulted. This means userspace can control the from address.
+		 * Ensure we don't blindy read any address by validating it is
+		 * a known text address.
+		 */
+		if (kernel_text_address(from))
+			addr = (void *)from;
+		else
+			return X86_BR_NONE;
+	}
 
 #ifdef CONFIG_X86_64
 	is64 = kernel_ip((unsigned long)addr) || !test_thread_flag(TIF_IA32);
