@@ -1744,6 +1744,7 @@ static int pool_ctr(struct dm_target *ti, unsigned argc, char **argv)
 	if (pf.discard_enabled && pf.discard_passdown) {
 		ti->num_discard_requests = 1;
 		ti->discards_supported = 1;
+		ti->discard_zeroes_data_unsupported = 1;
 	}
 	ti->private = pt;
 
@@ -2123,7 +2124,6 @@ static void set_discard_limits(struct pool *pool, struct queue_limits *limits)
 	limits->max_discard_sectors = pool->sectors_per_block;
 
 	limits->discard_granularity = pool->sectors_per_block << SECTOR_SHIFT;
-	limits->discard_zeroes_data = pool->pf.zero_new_blocks;
 }
 
 static void pool_io_hints(struct dm_target *ti, struct queue_limits *limits)
