@@ -2396,9 +2396,9 @@ int evergreen_mc_init(struct radeon_device *rdev)
 		rdev->mc.mc_vram_size = RREG32(CONFIG_MEMSIZE);
 		rdev->mc.real_vram_size = RREG32(CONFIG_MEMSIZE);
 	} else {
-		
-		rdev->mc.mc_vram_size = RREG32(CONFIG_MEMSIZE) * 1024 * 1024;
-		rdev->mc.real_vram_size = RREG32(CONFIG_MEMSIZE) * 1024 * 1024;
+		/* size in MB on evergreen/cayman/tn */
+		rdev->mc.mc_vram_size = RREG32(CONFIG_MEMSIZE) * 1024ULL * 1024ULL;
++		rdev->mc.real_vram_size = RREG32(CONFIG_MEMSIZE) * 1024ULL * 1024ULL;
 	}
 	rdev->mc.visible_vram_size = rdev->mc.aper_size;
 	r700_vram_gtt_location(rdev, &rdev->mc);

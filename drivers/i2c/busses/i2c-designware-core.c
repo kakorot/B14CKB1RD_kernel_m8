@@ -281,10 +281,11 @@ static void i2c_dw_xfer_init(struct dw_i2c_dev *dev)
 		ic_con &= ~DW_IC_CON_10BITADDR_MASTER;
 	dw_writel(dev, ic_con, DW_IC_CON);
 
-	
+	/* Enable the adapter */
 	dw_writel(dev, 1, DW_IC_ENABLE);
 
-	
+	/* Clear and enable interrupts */
+	i2c_dw_clear_int(dev);
 	dw_writel(dev, DW_IC_INTR_DEFAULT_MASK, DW_IC_INTR_MASK);
 }
 EXPORT_SYMBOL_GPL(i2c_dw_init);
