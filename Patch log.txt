@@ -1,0 +1,86 @@
+3.4.48 - patch
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   Makefile
+	modified:   arch/arm/mach-kirkwood/ts219-setup.c
+	modified:   arch/arm/plat-orion/common.c
+	modified:   arch/avr32/kernel/module.c
+	modified:   arch/m68k/kernel/head.S
+	modified:   arch/x86/um/sys_call_table_32.c
+	modified:   drivers/ata/ata_piix.c
+	modified:   drivers/ata/libata-core.c
+	modified:   drivers/block/brd.c
+	deleted:    drivers/iommu/amd_iommu.c.orig
+	modified:   drivers/iommu/amd_iommu.c.rej
+	modified:   drivers/leds/leds-ot200.c
+	modified:   drivers/platform/x86/thinkpad_acpi.c
+	modified:   drivers/staging/vt6656/hostap.c
+	modified:   drivers/target/iscsi/iscsi_target_parameters.c
+	modified:   drivers/target/iscsi/iscsi_target_parameters.h
+	modified:   drivers/usb/atm/cxacru.c
+	modified:   drivers/usb/host/uhci-hub.c
+	modified:   drivers/usb/serial/ftdi_sio.c
+	modified:   drivers/usb/serial/ftdi_sio_ids.h
+	deleted:    drivers/usb/serial/option.c.orig
+	modified:   drivers/xen/events.c
+	modified:   fs/cifs/inode.c
+	modified:   fs/jfs/inode.c
+	modified:   fs/jfs/jfs_logmgr.c
+	deleted:    fs/nfs/nfs4proc.c.orig
+	modified:   fs/nilfs2/inode.c
+	modified:   fs/ocfs2/extent_map.c
+	modified:   mm/huge_memory.c
+	modified:   mm/migrate.c
+	modified:   net/mac80211/iface.c
+	modified:   tools/perf/scripts/python/net_dropmonitor.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	arch/arm/mach-kirkwood/ts219-setup.c.orig
+	arch/arm/plat-orion/common.c.orig
+	arch/avr32/kernel/module.c.orig
+	arch/x86/um/sys_call_table_32.c.orig
+	drivers/ata/ata_piix.c.orig
+	drivers/ata/libata-core.c.orig
+	drivers/block/brd.c.orig
+	drivers/gpu/drm/radeon/radeon_device.c.rej
+	drivers/iommu/amd_iommu_types.h.rej
+	drivers/leds/leds-ot200.c.orig
+	drivers/net/xen-netback/netback.c.rej
+	drivers/platform/x86/thinkpad_acpi.c.orig
+	drivers/staging/vt6656/hostap.c.orig
+	drivers/target/iscsi/iscsi_target_parameters.c.orig
+	drivers/tty/n_tty.c.rej
+	drivers/usb/atm/cxacru.c.orig
+	drivers/usb/core/quirks.c.rej
+	drivers/usb/host/uhci-hub.c.orig
+	drivers/usb/host/xhci-mem.c.rej
+	drivers/usb/serial/ftdi_sio.c.orig
+	drivers/usb/serial/ftdi_sio_ids.h.orig
+	drivers/usb/serial/option.c.rej
+	drivers/xen/events.c.orig
+	fs/cifs/cifs_dfs_ref.c.rej
+	fs/cifs/inode.c.orig
+	fs/fat/inode.c.rej
+	fs/jfs/inode.c.orig
+	fs/jfs/jfs_logmgr.c.orig
+	fs/nilfs2/inode.c.orig
+	fs/ocfs2/extent_map.c.orig
+	fs/xfs/xfs_iops.c.rej
+	include/linux/wait.h.rej
+	lib/klist.c.rej
+	mm/huge_memory.c.orig
+	mm/migrate.c.orig
+	mm/mmu_notifier.c.rej
+	mm/pagewalk.c.rej
+	net/mac80211/iface.c.orig
+	patch-3.4.47-48.gz
+
+
