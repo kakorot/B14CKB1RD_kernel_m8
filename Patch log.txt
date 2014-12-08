@@ -180,4 +180,92 @@ Untracked files:
 	sound/usb/mixer.c.rej
 	sound/usb/quirks-table.h.orig
 
+3.4.50 Patch
+        modified:   Makefile
+        modified:   arch/powerpc/include/asm/exception-64s.h
+        modified:   arch/powerpc/kernel/irq.c
+        modified:   arch/x86/kernel/relocate_kernel_64.S
+        modified:   drivers/block/cciss.c
+        modified:   drivers/gpu/drm/gma500/cdv_intel_display.c
+        modified:   drivers/gpu/drm/gma500/psb_intel_display.c
+        modified:   drivers/gpu/drm/i915/intel_sdvo.c
+        modified:   drivers/md/raid1.c
+        modified:   drivers/md/raid1.c.orig
+        modified:   drivers/md/raid10.c
+        modified:   drivers/md/raid10.c.orig
+        modified:   drivers/net/wireless/ath/ath9k/Kconfig
+        modified:   drivers/net/wireless/ath/ath9k/Makefile
+        modified:   drivers/net/wireless/ath/ath9k/init.c
+        modified:   drivers/net/wireless/ath/ath9k/rc.h
+        modified:   drivers/net/wireless/b43/main.c
+        modified:   drivers/rtc/rtc-twl.c
+        modified:   fs/ceph/locks.c
+        modified:   fs/ceph/mds_client.c
+        modified:   fs/ceph/super.c
+        modified:   fs/ceph/super.h
+        modified:   include/linux/ceph/auth.h
+        modified:   include/linux/cpu.h
+        modified:   include/linux/swapops.h
+        modified:   kernel/cpu.c
+        modified:   kernel/sys.c
+        modified:   mm/hugetlb.c
+        modified:   mm/migrate.c
+        modified:   net/ceph/auth.c
+        modified:   net/ceph/auth_x.c
+        modified:   net/ceph/messenger.c
+        modified:   net/ceph/messenger.c.orig
+        modified:   net/ceph/mon_client.c
+        modified:   net/ceph/osd_client.c
 
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        arch/powerpc/include/asm/exception-64s.h.orig
+        arch/powerpc/kernel/irq.c.orig
+        arch/powerpc/kernel/process.c.orig
+        arch/powerpc/kernel/process.c.rej
+        drivers/block/cciss.c.orig
+        drivers/gpu/drm/gma500/cdv_intel_display.c.orig
+        drivers/gpu/drm/gma500/psb_intel_display.c.orig
+        drivers/gpu/drm/i915/intel_sdvo.c.orig
+        drivers/gpu/drm/i915/intel_sdvo.c.rej
+        drivers/net/wireless/ath/ath9k/init.c.orig
+        drivers/net/wireless/ath/ath9k/rc.h.orig
+        drivers/net/wireless/b43/main.c.orig
+        drivers/rtc/rtc-twl.c.orig
+        fs/ceph/locks.c.orig
+        fs/ceph/locks.c.rej
+        fs/ceph/mds_client.c.orig
+        fs/ceph/mds_client.c.rej
+        fs/ceph/super.c.orig
+        fs/ceph/super.c.rej
+        fs/ceph/super.h.orig
+        fs/ceph/super.h.rej
+        include/linux/ceph/auth.h.orig
+        include/linux/ceph/auth.h.rej
+        include/linux/cpu.h.orig
+        include/linux/swapops.h.orig
+        include/net/bluetooth/hci_core.h.orig
+        include/net/bluetooth/hci_core.h.rej
+        include/net/bluetooth/mgmt.h.orig
+        include/net/bluetooth/mgmt.h.rej
+        kernel/cpu.c.orig
+        kernel/cpu.c.rej
+        kernel/sys.c.orig
+        kernel/sys.c.rej
+        mm/hugetlb.c.orig
+        mm/migrate.c.orig
+        mm/migrate.c.rej
+        mm/swap_state.c.orig
+        mm/swap_state.c.rej
+        net/bluetooth/hci_core.c.orig
+        net/bluetooth/hci_core.c.rej
+        net/bluetooth/mgmt.c.orig
+        net/bluetooth/mgmt.c.rej
+        net/ceph/auth.c.orig
+        net/ceph/auth_x.c.orig
+        net/ceph/auth_x.h.orig
+        net/ceph/auth_x.h.rej
+        net/ceph/mon_client.c.orig
+        net/ceph/osd_client.c.orig
+        patch-3.4.49-50.gz

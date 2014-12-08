@@ -134,7 +134,7 @@ notrace unsigned int __check_irq_replay(void)
 	}
 
 	local_paca->irq_happened &= ~PACA_IRQ_DEC;
-	if (decrementer_check_overflow())
+	if ((happened & PACA_IRQ_DEC) || decrementer_check_overflow())
 		return 0x900;
 
 	
