@@ -83,4 +83,101 @@ Untracked files:
 	net/mac80211/iface.c.orig
 	patch-3.4.47-48.gz
 
+3.4.49 Patch
+modified:   Makefile
+	modified:   arch/powerpc/platforms/pseries/eeh_pseries.c
+	modified:   drivers/acpi/video.c
+	modified:   drivers/acpi/video.c.orig
+	modified:   drivers/gpu/drm/drm_irq.c
+	modified:   drivers/gpu/drm/gma500/framebuffer.c
+	modified:   drivers/gpu/drm/i915/intel_lvds.c
+	modified:   drivers/gpu/drm/i915/intel_lvds.c.orig
+	modified:   drivers/gpu/drm/radeon/atombios_encoders.c
+	modified:   drivers/gpu/drm/radeon/ni.c
+	modified:   drivers/gpu/drm/radeon/ni.c.orig
+	modified:   drivers/gpu/drm/radeon/r600.c
+	modified:   drivers/gpu/drm/radeon/rv770.c
+	modified:   drivers/usb/host/ehci-sched.c
+	modified:   drivers/usb/host/xhci-mem.c
+	modified:   drivers/usb/host/xhci.c
+	modified:   drivers/usb/serial/cypress_m8.c
+	modified:   drivers/usb/serial/ftdi_sio.c
+	modified:   drivers/usb/serial/iuu_phoenix.c
+	modified:   drivers/usb/serial/keyspan.c
+	modified:   drivers/usb/serial/mos7720.c
+	modified:   drivers/usb/serial/option.c
+	modified:   drivers/usb/serial/visor.c
+	modified:   drivers/usb/serial/whiteheat.c
+	modified:   drivers/xen/xen-pciback/pciback_ops.c
+	modified:   include/linux/ftrace.h
+	modified:   kernel/trace/ftrace.c
+	modified:   kernel/trace/ftrace.c.orig
+	modified:   kernel/trace/trace_stack.c
+	modified:   sound/usb/quirks-table.h
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	arch/powerpc/platforms/pseries/eeh_pseries.c.orig
+	arch/powerpc/platforms/pseries/eeh_pseries.c.rej
+	drivers/gpu/drm/drm_irq.c.orig
+	drivers/gpu/drm/drm_irq.c.rej
+	drivers/gpu/drm/gma500/framebuffer.c.orig
+	drivers/gpu/drm/i915/intel_sdvo.c.orig
+	drivers/gpu/drm/i915/intel_sdvo.c.rej
+	drivers/gpu/drm/radeon/atombios_encoders.c.orig
+	drivers/gpu/drm/radeon/evergreen.c.rej
+	drivers/gpu/drm/radeon/ni.c.rej
+	drivers/gpu/drm/radeon/r100.c.orig
+	drivers/gpu/drm/radeon/r100.c.rej
+	drivers/gpu/drm/radeon/r300.c.orig
+	drivers/gpu/drm/radeon/r300.c.rej
+	drivers/gpu/drm/radeon/r420.c.orig
+	drivers/gpu/drm/radeon/r420.c.rej
+	drivers/gpu/drm/radeon/r520.c.orig
+	drivers/gpu/drm/radeon/r520.c.rej
+	drivers/gpu/drm/radeon/r600.c.orig
+	drivers/gpu/drm/radeon/r600.c.rej
+	drivers/gpu/drm/radeon/rs400.c.orig
+	drivers/gpu/drm/radeon/rs400.c.rej
+	drivers/gpu/drm/radeon/rs600.c.orig
+	drivers/gpu/drm/radeon/rs600.c.rej
+	drivers/gpu/drm/radeon/rs690.c.orig
+	drivers/gpu/drm/radeon/rs690.c.rej
+	drivers/gpu/drm/radeon/rv515.c.orig
+	drivers/gpu/drm/radeon/rv515.c.rej
+	drivers/gpu/drm/radeon/rv770.c.orig
+	drivers/gpu/drm/radeon/rv770.c.rej
+	drivers/gpu/drm/radeon/si.c.rej
+	drivers/hwmon/adm1021.c.orig
+	drivers/hwmon/adm1021.c.rej
+	drivers/usb/host/ehci-sched.c.orig
+	drivers/usb/host/xhci-mem.c.orig
+	drivers/usb/host/xhci-mem.c.rej
+	drivers/usb/host/xhci.c.orig
+	drivers/usb/host/xhci.c.rej
+	drivers/usb/serial/ark3116.c.orig
+	drivers/usb/serial/ark3116.c.rej
+	drivers/usb/serial/cypress_m8.c.orig
+	drivers/usb/serial/cypress_m8.c.rej
+	drivers/usb/serial/cypress_m8.h.orig
+	drivers/usb/serial/cypress_m8.h.rej
+	drivers/usb/serial/ftdi_sio.c.orig
+	drivers/usb/serial/iuu_phoenix.c.orig
+	drivers/usb/serial/keyspan.c.orig
+	drivers/usb/serial/mos7720.c.orig
+	drivers/usb/serial/mos7720.c.rej
+	drivers/usb/serial/option.c.orig
+	drivers/usb/serial/visor.c.orig
+	drivers/usb/serial/whiteheat.c.orig
+	drivers/xen/xen-pciback/pciback_ops.c.orig
+	include/linux/ftrace.h.orig
+	include/linux/ftrace.h.rej
+	kernel/trace/ftrace.c.rej
+	kernel/trace/trace_stack.c.orig
+	patch-3.4.48-49.gz
+	sound/usb/mixer.c.orig
+	sound/usb/mixer.c.rej
+	sound/usb/quirks-table.h.orig
+
 
