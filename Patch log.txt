@@ -341,4 +341,50 @@ Untracked files:
         sound/usb/mixer.c.orig
         sound/usb/mixer.c.rej
 		
-		
+Patch 3.4.52
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   Makefile
+        modified:   arch/arm/include/asm/cacheflush.h
+        modified:   arch/arm/mm/flush.c
+        modified:   arch/arm/mm/nommu.c
+        modified:   drivers/net/wan/dlci.c
+        modified:   fs/ubifs/dir.c
+        modified:   include/linux/perf_event.h
+        modified:   kernel/events/core.c
+        modified:   kernel/events/hw_breakpoint.c
+        modified:   kernel/events/internal.h
+        modified:   net/bluetooth/l2cap_core.c
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        Makefile.rej
+        arch/arm/include/asm/cacheflush.h.orig
+        arch/arm/include/asm/cacheflush.h.rej
+        arch/arm/mm/flush.c.orig
+        arch/arm/mm/flush.c.rej
+        arch/arm/mm/nommu.c.orig
+        arch/arm/mm/nommu.c.rej
+        drivers/net/wan/dlci.c.orig
+        drivers/net/wan/dlci.c.rej
+        drivers/tty/serial/pch_uart.c.orig
+        drivers/tty/serial/pch_uart.c.rej
+        fs/exec.c.orig
+        fs/exec.c.rej
+        fs/ubifs/dir.c.orig
+        fs/ubifs/dir.c.rej
+        include/linux/perf_event.h.orig
+        include/linux/perf_event.h.rej
+        kernel/events/core.c.orig
+        kernel/events/core.c.rej
+        kernel/events/hw_breakpoint.c.orig
+        kernel/events/hw_breakpoint.c.rej
+        kernel/events/internal.h.orig
+        kernel/events/internal.h.rej
+        net/bluetooth/l2cap_core.c.orig
+        patch-3.4.51-52.gz
+
