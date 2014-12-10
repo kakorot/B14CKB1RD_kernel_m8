@@ -1078,6 +1078,7 @@ int clk_notifier_unregister(struct clk *clk, struct notifier_block *nb)
 		
 		if (!cn->notifier_head.head) {
 			srcu_cleanup_notifier_head(&cn->notifier_head);
+			list_del(&cn->node);
 			kfree(cn);
 		}
 

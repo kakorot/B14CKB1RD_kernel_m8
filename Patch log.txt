@@ -268,4 +268,77 @@ Untracked files:
         net/ceph/auth_x.h.rej
         net/ceph/mon_client.c.orig
         net/ceph/osd_client.c.orig
-        patch-3.4.49-50.gz
+
+Patch 3.4.51
+
+        modified:   Makefile
+        modified:   arch/tile/lib/exports.c
+        modified:   arch/x86/kvm/x86.c
+        modified:   drivers/clk/clk.c
+        modified:   drivers/input/touchscreen/cyttsp_core.c
+        modified:   drivers/net/bonding/bond_alb.c
+        modified:   drivers/net/bonding/bonding.h
+        modified:   drivers/net/ethernet/freescale/gianfar_ptp.c
+        modified:   drivers/net/ethernet/realtek/8139cp.c
+        modified:   drivers/net/ethernet/realtek/r8169.c
+        modified:   drivers/net/team/team_mode_roundrobin.c
+        modified:   drivers/target/iscsi/iscsi_target_erl0.c
+        modified:   drivers/usb/serial/ti_usb_3410_5052.c
+        modified:   drivers/usb/serial/ti_usb_3410_5052.h
+        modified:   fs/notify/inotify/inotify_user.c
+        modified:   include/linux/socket.h
+        modified:   net/compat.c
+        modified:   net/ipv4/ip_gre.c
+        modified:   net/ipv4/ipip.c
+        modified:   net/ipv4/tcp.c
+        modified:   net/ipv4/tcp_input.c
+        modified:   net/ipv4/tcp_output.c
+        modified:   net/ipv6/addrconf.c
+        modified:   net/ipv6/ip6_output.c
+        modified:   net/sctp/socket.c
+        modified:   net/socket.c
+        modified:   sound/usb/card.c
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        arch/tile/lib/exports.c.orig
+        arch/x86/kvm/x86.c.orig
+        drivers/clk/clk.c.orig
+        drivers/input/touchscreen/cyttsp_core.c.orig
+        drivers/net/bonding/bond_alb.c.orig
+        drivers/net/bonding/bonding.h.orig
+        drivers/net/ethernet/freescale/gianfar_ptp.c.orig
+        drivers/net/ethernet/realtek/8139cp.c.orig
+        drivers/net/ethernet/realtek/r8169.c.orig
+        drivers/target/iscsi/iscsi_target_erl0.c.orig
+        drivers/usb/serial/ti_usb_3410_5052.c.orig
+        drivers/usb/serial/ti_usb_3410_5052.h.orig
+        fs/notify/inotify/inotify_user.c.orig
+        fs/notify/inotify/inotify_user.c.rej
+        include/linux/rculist_nulls.h.orig
+        include/linux/rculist_nulls.h.rej
+        include/linux/socket.h.orig
+        net/compat.c.orig
+        net/ipv4/ip_gre.c.orig
+        net/ipv4/ipip.c.orig
+        net/ipv4/tcp.c.orig
+        net/ipv4/tcp_input.c.orig
+        net/ipv4/tcp_input.c.rej
+        net/ipv4/tcp_output.c.orig
+        net/ipv6/addrconf.c.orig
+        net/ipv6/ip6_output.c.orig
+        net/l2tp/l2tp_ppp.c.orig
+        net/l2tp/l2tp_ppp.c.rej
+        net/netlabel/netlabel_domainhash.c.orig
+        net/netlabel/netlabel_domainhash.c.rej
+        net/packet/af_packet.c.rej
+        net/sctp/socket.c.orig
+        net/socket.c.orig
+        net/socket.c.rej
+        patch-3.4.50-51.gz
+        sound/usb/card.c.orig
+        sound/usb/mixer.c.orig
+        sound/usb/mixer.c.rej
+		
+		
