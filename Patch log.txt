@@ -1,12 +1,5 @@
 3.4.48 - patch
 
-On branch master
-Your branch is up-to-date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
 	modified:   Makefile
 	modified:   arch/arm/mach-kirkwood/ts219-setup.c
 	modified:   arch/arm/plat-orion/common.c
@@ -40,51 +33,8 @@ Changes not staged for commit:
 	modified:   net/mac80211/iface.c
 	modified:   tools/perf/scripts/python/net_dropmonitor.py
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	arch/arm/mach-kirkwood/ts219-setup.c.orig
-	arch/arm/plat-orion/common.c.orig
-	arch/avr32/kernel/module.c.orig
-	arch/x86/um/sys_call_table_32.c.orig
-	drivers/ata/ata_piix.c.orig
-	drivers/ata/libata-core.c.orig
-	drivers/block/brd.c.orig
-	drivers/gpu/drm/radeon/radeon_device.c.rej
-	drivers/iommu/amd_iommu_types.h.rej
-	drivers/leds/leds-ot200.c.orig
-	drivers/net/xen-netback/netback.c.rej
-	drivers/platform/x86/thinkpad_acpi.c.orig
-	drivers/staging/vt6656/hostap.c.orig
-	drivers/target/iscsi/iscsi_target_parameters.c.orig
-	drivers/tty/n_tty.c.rej
-	drivers/usb/atm/cxacru.c.orig
-	drivers/usb/core/quirks.c.rej
-	drivers/usb/host/uhci-hub.c.orig
-	drivers/usb/host/xhci-mem.c.rej
-	drivers/usb/serial/ftdi_sio.c.orig
-	drivers/usb/serial/ftdi_sio_ids.h.orig
-	drivers/usb/serial/option.c.rej
-	drivers/xen/events.c.orig
-	fs/cifs/cifs_dfs_ref.c.rej
-	fs/cifs/inode.c.orig
-	fs/fat/inode.c.rej
-	fs/jfs/inode.c.orig
-	fs/jfs/jfs_logmgr.c.orig
-	fs/nilfs2/inode.c.orig
-	fs/ocfs2/extent_map.c.orig
-	fs/xfs/xfs_iops.c.rej
-	include/linux/wait.h.rej
-	lib/klist.c.rej
-	mm/huge_memory.c.orig
-	mm/migrate.c.orig
-	mm/mmu_notifier.c.rej
-	mm/pagewalk.c.rej
-	net/mac80211/iface.c.orig
-	patch-3.4.47-48.gz
-
 3.4.49 Patch
-modified:   Makefile
+	modified:   Makefile
 	modified:   arch/powerpc/platforms/pseries/eeh_pseries.c
 	modified:   drivers/acpi/video.c
 	modified:   drivers/acpi/video.c.orig
@@ -114,71 +64,6 @@ modified:   Makefile
 	modified:   kernel/trace/ftrace.c.orig
 	modified:   kernel/trace/trace_stack.c
 	modified:   sound/usb/quirks-table.h
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	arch/powerpc/platforms/pseries/eeh_pseries.c.orig
-	arch/powerpc/platforms/pseries/eeh_pseries.c.rej
-	drivers/gpu/drm/drm_irq.c.orig
-	drivers/gpu/drm/drm_irq.c.rej
-	drivers/gpu/drm/gma500/framebuffer.c.orig
-	drivers/gpu/drm/i915/intel_sdvo.c.orig
-	drivers/gpu/drm/i915/intel_sdvo.c.rej
-	drivers/gpu/drm/radeon/atombios_encoders.c.orig
-	drivers/gpu/drm/radeon/evergreen.c.rej
-	drivers/gpu/drm/radeon/ni.c.rej
-	drivers/gpu/drm/radeon/r100.c.orig
-	drivers/gpu/drm/radeon/r100.c.rej
-	drivers/gpu/drm/radeon/r300.c.orig
-	drivers/gpu/drm/radeon/r300.c.rej
-	drivers/gpu/drm/radeon/r420.c.orig
-	drivers/gpu/drm/radeon/r420.c.rej
-	drivers/gpu/drm/radeon/r520.c.orig
-	drivers/gpu/drm/radeon/r520.c.rej
-	drivers/gpu/drm/radeon/r600.c.orig
-	drivers/gpu/drm/radeon/r600.c.rej
-	drivers/gpu/drm/radeon/rs400.c.orig
-	drivers/gpu/drm/radeon/rs400.c.rej
-	drivers/gpu/drm/radeon/rs600.c.orig
-	drivers/gpu/drm/radeon/rs600.c.rej
-	drivers/gpu/drm/radeon/rs690.c.orig
-	drivers/gpu/drm/radeon/rs690.c.rej
-	drivers/gpu/drm/radeon/rv515.c.orig
-	drivers/gpu/drm/radeon/rv515.c.rej
-	drivers/gpu/drm/radeon/rv770.c.orig
-	drivers/gpu/drm/radeon/rv770.c.rej
-	drivers/gpu/drm/radeon/si.c.rej
-	drivers/hwmon/adm1021.c.orig
-	drivers/hwmon/adm1021.c.rej
-	drivers/usb/host/ehci-sched.c.orig
-	drivers/usb/host/xhci-mem.c.orig
-	drivers/usb/host/xhci-mem.c.rej
-	drivers/usb/host/xhci.c.orig
-	drivers/usb/host/xhci.c.rej
-	drivers/usb/serial/ark3116.c.orig
-	drivers/usb/serial/ark3116.c.rej
-	drivers/usb/serial/cypress_m8.c.orig
-	drivers/usb/serial/cypress_m8.c.rej
-	drivers/usb/serial/cypress_m8.h.orig
-	drivers/usb/serial/cypress_m8.h.rej
-	drivers/usb/serial/ftdi_sio.c.orig
-	drivers/usb/serial/iuu_phoenix.c.orig
-	drivers/usb/serial/keyspan.c.orig
-	drivers/usb/serial/mos7720.c.orig
-	drivers/usb/serial/mos7720.c.rej
-	drivers/usb/serial/option.c.orig
-	drivers/usb/serial/visor.c.orig
-	drivers/usb/serial/whiteheat.c.orig
-	drivers/xen/xen-pciback/pciback_ops.c.orig
-	include/linux/ftrace.h.orig
-	include/linux/ftrace.h.rej
-	kernel/trace/ftrace.c.rej
-	kernel/trace/trace_stack.c.orig
-	patch-3.4.48-49.gz
-	sound/usb/mixer.c.orig
-	sound/usb/mixer.c.rej
-	sound/usb/quirks-table.h.orig
 
 3.4.50 Patch
         modified:   Makefile
@@ -217,58 +102,6 @@ Untracked files:
         modified:   net/ceph/mon_client.c
         modified:   net/ceph/osd_client.c
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-        arch/powerpc/include/asm/exception-64s.h.orig
-        arch/powerpc/kernel/irq.c.orig
-        arch/powerpc/kernel/process.c.orig
-        arch/powerpc/kernel/process.c.rej
-        drivers/block/cciss.c.orig
-        drivers/gpu/drm/gma500/cdv_intel_display.c.orig
-        drivers/gpu/drm/gma500/psb_intel_display.c.orig
-        drivers/gpu/drm/i915/intel_sdvo.c.orig
-        drivers/gpu/drm/i915/intel_sdvo.c.rej
-        drivers/net/wireless/ath/ath9k/init.c.orig
-        drivers/net/wireless/ath/ath9k/rc.h.orig
-        drivers/net/wireless/b43/main.c.orig
-        drivers/rtc/rtc-twl.c.orig
-        fs/ceph/locks.c.orig
-        fs/ceph/locks.c.rej
-        fs/ceph/mds_client.c.orig
-        fs/ceph/mds_client.c.rej
-        fs/ceph/super.c.orig
-        fs/ceph/super.c.rej
-        fs/ceph/super.h.orig
-        fs/ceph/super.h.rej
-        include/linux/ceph/auth.h.orig
-        include/linux/ceph/auth.h.rej
-        include/linux/cpu.h.orig
-        include/linux/swapops.h.orig
-        include/net/bluetooth/hci_core.h.orig
-        include/net/bluetooth/hci_core.h.rej
-        include/net/bluetooth/mgmt.h.orig
-        include/net/bluetooth/mgmt.h.rej
-        kernel/cpu.c.orig
-        kernel/cpu.c.rej
-        kernel/sys.c.orig
-        kernel/sys.c.rej
-        mm/hugetlb.c.orig
-        mm/migrate.c.orig
-        mm/migrate.c.rej
-        mm/swap_state.c.orig
-        mm/swap_state.c.rej
-        net/bluetooth/hci_core.c.orig
-        net/bluetooth/hci_core.c.rej
-        net/bluetooth/mgmt.c.orig
-        net/bluetooth/mgmt.c.rej
-        net/ceph/auth.c.orig
-        net/ceph/auth_x.c.orig
-        net/ceph/auth_x.h.orig
-        net/ceph/auth_x.h.rej
-        net/ceph/mon_client.c.orig
-        net/ceph/osd_client.c.orig
-
 Patch 3.4.51
 
         modified:   Makefile
@@ -299,53 +132,7 @@ Patch 3.4.51
         modified:   net/socket.c
         modified:   sound/usb/card.c
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-        arch/tile/lib/exports.c.orig
-        arch/x86/kvm/x86.c.orig
-        drivers/clk/clk.c.orig
-        drivers/input/touchscreen/cyttsp_core.c.orig
-        drivers/net/bonding/bond_alb.c.orig
-        drivers/net/bonding/bonding.h.orig
-        drivers/net/ethernet/freescale/gianfar_ptp.c.orig
-        drivers/net/ethernet/realtek/8139cp.c.orig
-        drivers/net/ethernet/realtek/r8169.c.orig
-        drivers/target/iscsi/iscsi_target_erl0.c.orig
-        drivers/usb/serial/ti_usb_3410_5052.c.orig
-        drivers/usb/serial/ti_usb_3410_5052.h.orig
-        fs/notify/inotify/inotify_user.c.orig
-        fs/notify/inotify/inotify_user.c.rej
-        include/linux/rculist_nulls.h.orig
-        include/linux/rculist_nulls.h.rej
-        include/linux/socket.h.orig
-        net/compat.c.orig
-        net/ipv4/ip_gre.c.orig
-        net/ipv4/ipip.c.orig
-        net/ipv4/tcp.c.orig
-        net/ipv4/tcp_input.c.orig
-        net/ipv4/tcp_input.c.rej
-        net/ipv4/tcp_output.c.orig
-        net/ipv6/addrconf.c.orig
-        net/ipv6/ip6_output.c.orig
-        net/l2tp/l2tp_ppp.c.orig
-        net/l2tp/l2tp_ppp.c.rej
-        net/netlabel/netlabel_domainhash.c.orig
-        net/netlabel/netlabel_domainhash.c.rej
-        net/packet/af_packet.c.rej
-        net/sctp/socket.c.orig
-        net/socket.c.orig
-        net/socket.c.rej
-        patch-3.4.50-51.gz
-        sound/usb/card.c.orig
-        sound/usb/mixer.c.orig
-        sound/usb/mixer.c.rej
-		
 Patch 3.4.52
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
 
         modified:   Makefile
         modified:   arch/arm/include/asm/cacheflush.h
@@ -358,33 +145,4 @@ Changes not staged for commit:
         modified:   kernel/events/hw_breakpoint.c
         modified:   kernel/events/internal.h
         modified:   net/bluetooth/l2cap_core.c
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-        Makefile.rej
-        arch/arm/include/asm/cacheflush.h.orig
-        arch/arm/include/asm/cacheflush.h.rej
-        arch/arm/mm/flush.c.orig
-        arch/arm/mm/flush.c.rej
-        arch/arm/mm/nommu.c.orig
-        arch/arm/mm/nommu.c.rej
-        drivers/net/wan/dlci.c.orig
-        drivers/net/wan/dlci.c.rej
-        drivers/tty/serial/pch_uart.c.orig
-        drivers/tty/serial/pch_uart.c.rej
-        fs/exec.c.orig
-        fs/exec.c.rej
-        fs/ubifs/dir.c.orig
-        fs/ubifs/dir.c.rej
-        include/linux/perf_event.h.orig
-        include/linux/perf_event.h.rej
-        kernel/events/core.c.orig
-        kernel/events/core.c.rej
-        kernel/events/hw_breakpoint.c.orig
-        kernel/events/hw_breakpoint.c.rej
-        kernel/events/internal.h.orig
-        kernel/events/internal.h.rej
-        net/bluetooth/l2cap_core.c.orig
-        patch-3.4.51-52.gz
 
