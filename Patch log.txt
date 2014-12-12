@@ -146,3 +146,23 @@ Patch 3.4.52
         modified:   kernel/events/internal.h
         modified:   net/bluetooth/l2cap_core.c
 
+Patch 3.4.54
+
+	modified:   Makefile
+	modified:   arch/arm/kernel/perf_event.c
+	modified:   drivers/ata/libahci.c
+	modified:   drivers/dma/pl330.c
+	modified:   drivers/net/wireless/rtlwifi/rtl8192cu/rf.c
+	modified:   drivers/pci/quirks.c
+	modified:   drivers/pcmcia/at91_cf.c
+	modified:   drivers/usb/host/xhci-mem.c
+	modified:   drivers/usb/serial/option.c
+	modified:   fs/cifs/inode.c
+	modified:   fs/ext4/inode.c
+	modified:   fs/jbd2/transaction.c
+	modified:   fs/ocfs2/xattr.c
+	modified:   kernel/irq/manage.c
+
+
+
+
