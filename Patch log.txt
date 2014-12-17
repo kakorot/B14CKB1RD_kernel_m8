@@ -244,7 +244,7 @@ Patch 3.4.56
         modified:   sound/soc/codecs/max98088.c
 		
 Patch 3.4.58
-		modified:   Makefile
+	modified:   Makefile
         modified:   drivers/hwmon/adt7470.c
         modified:   drivers/scsi/nsp32.c
         modified:   drivers/usb/core/hub.c
@@ -255,4 +255,15 @@ Patch 3.4.58
         modified:   fs/ext4/super.c.orig
         modified:   kernel/trace/trace.c
         modified:   tools/perf/util/map.c
+
+Patch 3.4.60
+	modified:   Makefile
+	modified:   drivers/gpu/drm/i915/intel_ringbuffer.c
+	modified:   drivers/net/wireless/zd1201.c
+	modified:   drivers/of/fdt.c
+	modified:   drivers/s390/scsi/zfcp_erp.c
+	modified:   drivers/s390/scsi/zfcp_qdio.c
+	modified:   drivers/xen/events.c
+	modified:   include/linux/wait.h
+	modified:   kernel/workqueue.c
 
