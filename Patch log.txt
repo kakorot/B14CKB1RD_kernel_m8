@@ -267,3 +267,15 @@ Patch 3.4.60
 	modified:   include/linux/wait.h
 	modified:   kernel/workqueue.c
 
+Patch 3.4.61
+	modified:   Makefile
+        modified:   arch/powerpc/Kconfig
+        modified:   arch/powerpc/include/asm/page.h
+        modified:   drivers/base/memory.c
+        modified:   drivers/base/regmap/regmap.c
+        modified:   drivers/gpu/drm/i915/i915_reg.h
+        modified:   drivers/gpu/drm/vmwgfx/vmwgfx_gmr.c
+        modified:   fs/bio.c
+        modified:   net/sunrpc/xdr.c
+        modified:   sound/isa/opti9xx/opti92x-ad1848.c
+
