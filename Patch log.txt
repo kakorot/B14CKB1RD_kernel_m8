@@ -279,3 +279,22 @@ Patch 3.4.61
         modified:   net/sunrpc/xdr.c
         modified:   sound/isa/opti9xx/opti92x-ad1848.c
 
+Patch 3.4.62
+	modified:   Makefile
+        modified:   arch/m32r/boot/compressed/Makefile
+        modified:   arch/m32r/boot/compressed/misc.c
+        modified:   arch/x86/kvm/emulate.c
+        modified:   drivers/net/ethernet/realtek/8139cp.c
+        modified:   drivers/net/tun.c
+        modified:   include/linux/icmpv6.h
+        modified:   include/linux/ipv6.h
+        modified:   net/bridge/br_multicast.c
+        modified:   net/core/neighbour.c
+        modified:   net/core/sysctl_net_core.c
+        modified:   net/ipv6/addrconf.c
+        modified:   net/ipv6/icmp.c
+        modified:   net/ipv6/ip6_fib.c
+        modified:   net/ipv6/ndisc.c
+        modified:   net/ipv6/reassembly.c
+        modified:   net/ipv6/tcp_ipv6.c
+
